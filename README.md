@@ -7,7 +7,7 @@
 1. Для создания сеток используется flex и  grid layout
 2. Создана Nested файловая структура по БЭМ
 3. Сайт написан для 2 разрешений экранов.
-4. Адаптивная верстка
-5. Используется JavaScript для интерактивности
+4. Адаптивная верстка.
+5. Используется JavaScript для интерактивности.
 
-### ссылка: https://katyapesnya.github.io/russian-travel/index.html
+### ссылка на проект: https://katyapesnya.github.io/mesto/index.html
