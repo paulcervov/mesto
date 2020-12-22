@@ -1,0 +1,11 @@
+.card {
+  max-width: 282px;
+  list-style: none;
+  padding: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 0 20px 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
