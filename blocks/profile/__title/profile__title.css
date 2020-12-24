@@ -2,8 +2,11 @@
   font-size: 27px;
   font-weight: 500;
   line-height: 33px;
-  color: #ffffff;
+  color: #fff;
   margin: 0;
+  padding-top: 23px;
+  text-align: center;
+
 }
 @media (min-width: 1280px) {
   .profile__title {

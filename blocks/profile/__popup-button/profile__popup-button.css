@@ -1,19 +1,19 @@
 .profile__popup-button {
-  background-image: url(../../../images/Edit-Button.png);
+  background-image: url(../../../images/popup-Button.svg);
   background-repeat: no-repeat;
   min-height: 18px;
   min-width: 18px;
   background-color: #000;
   border: 0;
-  position: absolute;
-  top: 8px;
-  right: -38px;
   padding: 0;
+  grid-row: 1/2;
+  grid-column: 2/3;
 }
 .profile__popup-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
+
 @media (min-width: 1280px) {
   .profile__popup-button {
     min-height: 24px;
