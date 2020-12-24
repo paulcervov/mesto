@@ -1,5 +1,5 @@
-.card__item{
-    display: flex;
-    align-items: baseline;
-    justify-content: space-around;
+.card__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
 }

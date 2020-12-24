@@ -1,7 +1,7 @@
 .profile {
   box-sizing: border-box;
- display: grid;
- align-items: center;
+  display: grid;
+  align-items: center;
   padding: 38.25px 19px 36px 19px;
 }
 @media (min-width: 768px) {
@@ -19,7 +19,7 @@
 }
 @media (min-width: 1280px) {
   .profile {
-    
+    justify-items: center;
     padding: 36.25px 200px 47.25px 200px;
   }
 }
