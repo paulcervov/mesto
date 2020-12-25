@@ -1,17 +1,5 @@
 .header {
   box-sizing: border-box;
+  border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
-.header:hover {
-  background: #e5e5e5;
-}
-@media (min-width: 768px) {
-  .header {
-    padding: 0 100px;
-  }
-}
-@media (min-width: 1280px) {
-  .header {
-    padding: 0 200px;
-  }
-}

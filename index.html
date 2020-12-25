@@ -10,40 +10,38 @@
 
 <body class="root">
   <div class="page">
-    <header class="header">
-      <img src="./images/header-logo.svg" alt="logo" class="header__logo" />
-      <div class="header__line"></div>
+    <header class="header content__margin">
+      <img src="./images/header-logo.svg" alt="логотип" class="header__logo" />
     </header>
     <main class="content">
-      <section class="profile">
+      <section class="profile content__margin">
         <img src="./images/profile-avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar" />
         <div class="profile__info">
           <h1 class="profile__title text-content">Жак-Ив Кусто</h1>
-          <button class="profile__popup-button"></button>
           <p class="profile__description text-content">Исследователь океана</p>
+          <button type="button" class="profile__popup-button"></button>
         </div>
-        <button class="profile__add-button"></button>
+        
+         
+      
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="cards">
         <ul class="card">
           <li>
             <img src="./images/card-karachaevsk.jpg" alt="Карачаево-Черкессия" class="card__image" />
-          </li>
-          <li>
             <div class="card__item">
               <h2 class="card__title text-content">Карачаево-Черкессия</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </li>
         </ul>
         <ul class="card">
           <li>
             <img src="./images/card-elbrus.jpg" alt="Гора Эльбрус" class="card__image" />
-          </li>
-          <li>
             <div class="card__item">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like"></button>
+              <h2 class="card__title text-content">Гора Эльбрус</h2>
+              <button type="button" class="card__like"></button>
             </div>
           </li>
         </ul>
@@ -53,59 +51,53 @@
           </li>
           <li>
             <div class="card__item">
-              <h2 class="card__title">Домбай</h2>
-              <button class="card__like"></button>
+              <h2 class="card__title text-content">Домбай</h2>
+              <button type="button" class="card__like"></button>
             </div>
           </li>
         </ul>
         <ul class="card">
           <li>
             <img src="./images/card-elbrus.jpg" alt="Гора Эльбрус" class="card__image" />
-          </li>
-          <li>
             <div class="card__item">
-              <h2 class="card__title">Гора Эльбрус</h2>
-              <button class="card__like"></button>
+              <h2 class="card__title text-content">Гора Эльбрус</h2>
+              <button type="button" class="card__like"></button>
             </div>
           </li>
         </ul>
         <ul class="card">
           <li>
             <img src="./images/card-dombai.jpg" alt="Домбай" class="card__image" />
-          </li>
-          <li>
             <div class="card__item">
-              <h2 class="card__title">Домбай</h2>
-              <button class="card__like"></button>
+              <h2 class="card__title text-content">Домбай</h2>
+              <button type="button" class="card__like"></button>
             </div>
           </li>
         </ul>
         <ul class="card">
           <li>
             <img src="./images/card-karachaevsk.jpg" alt="Карочаево-Черкессия" class="card__image" />
-          </li>
-          <li>
             <div class="card__item">
               <h2 class="card__title text-content">Карачаево-Черкессия</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </li>
         </ul>
       </section>
     </main>
-    <footer class="footer">
+    <footer class="footer content__margin">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
   <section class="overlay">
     <div class="popup">
-      <form action="#" class="popup__container">
+      <form action="#" name="myForm" class="popup__container">
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <input type="text" class="popup__name text-content">
-        <input type="text" class="popup__job">
-        <button type="submit" class="popup__button text-content">Сохранить</button>
+        <input type="text" name="popup__name" class="popup__input">
+        <input type="text" name="popup__job" class="popup__input">
+        <button type="submit" class="popup__button">Сохранить</button>
       </form>
-      <span class="popup__close"></span>
+      <button type="button" class="popup__close"></button>
     </div>
   </section>
   <script src="./scripts/index.js"></script>

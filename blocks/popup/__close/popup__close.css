@@ -3,10 +3,12 @@
   background-position: center;
   height: 26px;
   width: 26px;
+ background-color:#000;
   position: absolute;
   top: -40px;
   right: 5px;
   border: none;
+  padding: 0;
 }
 
 .popup__close:hover {
@@ -17,5 +19,7 @@
   .popup__close {
     height: 40px;
     width: 40px;
+    top: -40px;
+    right: -31px;
   }
 }

@@ -1,25 +1,21 @@
 .profile {
   box-sizing: border-box;
+  padding: 38.25px 19px 36px 19px;
   display: grid;
   align-items: center;
-  padding: 38.25px 19px 36px 19px;
+  
 }
 @media (min-width: 768px) {
   .profile {
+    padding: 36.25px 0 27px 0;
     grid-template-columns: 130px 300px 200px;
-    justify-items: start;
-    padding: 36.25px 80px 47.25px 60px;
   }
 }
 @media (min-width: 1024px) {
   .profile {
-    padding: 36.25px 80px 47.25px 100px;
-    grid-template-columns: 200px 450px 200px;
+    grid-template-columns: 15% 60% 25%;
+    justify-items: start;
   }
 }
-@media (min-width: 1280px) {
-  .profile {
-    justify-items: center;
-    padding: 36.25px 200px 47.25px 200px;
-  }
-}
+
+
