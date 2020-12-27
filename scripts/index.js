@@ -14,7 +14,7 @@ likes.forEach((like) => {
     like.classList.toggle('card__like_active')
   });
 });
-let popupValue = () => {
+let openPopup = () => {
   nameInput.value = titleName.textContent
   jobInput.value = descriptionName.textContent
   togglePopup()
@@ -22,7 +22,7 @@ let popupValue = () => {
 let togglePopup = () => {
   overlay.classList.toggle('overlay_opened')
 }
-openButton.addEventListener('click', popupValue)
+openButton.addEventListener('click', openPopup)
 closeButton.addEventListener('click', togglePopup)
 overlay.addEventListener('click', (event) => {
   if (event.target === event.currentTarget) {
