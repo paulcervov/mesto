@@ -4,8 +4,8 @@ let openButton = document.querySelector('.profile__popup-button');
 let overlay = document.querySelector('.overlay');
 let closeButton = document.querySelector('.popup__close');
 let formElement = document.querySelector('.popup__container')
-let nameInput = document.querySelector('[name="popup__name"]')
-let jobInput = document.querySelector('[name="popup__job"]')
+let nameInput = document.querySelector('[name="popup-name"]')
+let jobInput = document.querySelector('[name="popup-job"]')
 let titleName = document.querySelector('.profile__title')
 let descriptionName = document.querySelector('.profile__description')
 
@@ -17,14 +17,21 @@ likes.forEach((like) => {
 
 let togglePopup = () => {
   overlay.classList.toggle('overlay_opened')
-  nameInput.value = titleName.textContent
-  jobInput.value = descriptionName.textContent
+
+
 }
 
-openButton.addEventListener('click', togglePopup)
+
+openButton.addEventListener('click', (event) => {
+
+  nameInput.value = titleName.textContent
+  jobInput.value = descriptionName.textContent
+  togglePopup()
+})
 closeButton.addEventListener('click', togglePopup)
 overlay.addEventListener('click', (event) => {
   if (event.target === event.currentTarget) {
+
     togglePopup()
   }
 })

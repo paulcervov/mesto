@@ -1,9 +1,10 @@
 .profile__popup-button {
-  background-image: url(../../../images/popup-Button.svg);
+  background-image: url(../../../images/popup-button.svg);
   background-repeat: no-repeat;
   min-height: 18px;
   min-width: 18px;
   background-color: #000;
+  background-size: contain;
   border: 0;
   padding: 0;
   grid-row: 1/2;
@@ -18,5 +19,6 @@
 @media (min-width: 1280px) {
   .profile__popup-button {
     min-width: 24px;
+    min-height: 24px;
   }
 }
