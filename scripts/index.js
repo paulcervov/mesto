@@ -14,24 +14,18 @@ likes.forEach((like) => {
     like.classList.toggle('card__like_active')
   });
 });
-
-let togglePopup = () => {
-  overlay.classList.toggle('overlay_opened')
-
-
-}
-
-
-openButton.addEventListener('click', (event) => {
-
+let popupValue = () => {
   nameInput.value = titleName.textContent
   jobInput.value = descriptionName.textContent
   togglePopup()
-})
+}
+let togglePopup = () => {
+  overlay.classList.toggle('overlay_opened')
+}
+openButton.addEventListener('click', popupValue)
 closeButton.addEventListener('click', togglePopup)
 overlay.addEventListener('click', (event) => {
   if (event.target === event.currentTarget) {
-
     togglePopup()
   }
 })
@@ -42,6 +36,5 @@ function handleFormSubmit(evt) {
   descriptionName.textContent = jobInput.value
   togglePopup()
 }
-
 
 formElement.addEventListener('submit', handleFormSubmit);
