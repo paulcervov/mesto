@@ -1,16 +1,18 @@
 .card {
+  position: relative;
   max-width: 282px;
   background: #ffffff;
   border-radius: 10px;
   margin: 0 0 20px 0;
   box-sizing: border-box;
   overflow: hidden;
+  position: relative;
 }
-.card:last-of-type{
-margin: 0;
-}
-@media (min-width: 768px){
-.card{
+.card:last-of-type {
   margin: 0;
 }
+@media (min-width: 768px) {
+  .card {
+    margin: 0;
+  }
 }
