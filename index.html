@@ -75,35 +75,34 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
   </div>
-  <section class="overlay popup-edit">
+  <section class="overlay overlay_type_edit">
     <div class="popup">
-      <form action="#" name="my-form" class="popup__container popup__container-edit">
+      <form action="#" name="my-form" class="popup__container popup__container_type_edit">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <input type="text" name="popup-name" class="popup__input">
         <input type="text" name="popup-job" class="popup__input">
-        <button type="submit" class="popup__button popup__button-edit">Сохранить</button>
+        <button type="submit" class="popup__button popup__button_type_edit">Сохранить</button>
       </form>
-      <button type="button" class="popup__close popup__close-edit"></button>
+      <button type="button" class="popup__close popup__close_type_edit"></button>
     </div>
   </section>
-  <section class="overlay popup-add">
+  <section class="overlay overlay_type_add">
     <div class="popup">
-      <form action="#" name="my-form-add" class="popup__container popup__container-add">
+      <form action="#" name="my-form-add" class="popup__container popup__container_type_add">
         <h2 class="popup__heading">Новое место</h2>
         <input type="text" name="popup-title" placeholder="Название" class="popup__input">
         <input type="text" name="popup-url" placeholder="Ссылка на картинку" class="popup__input">
-        <button type="submit" class="popup__button popup__button-add">Создать</button>
+        <button type="submit" class="popup__button popup__button_type_add">Создать</button>
       </form>
-      <button type="button" class="popup__close popup__close-add"></button>
+      <button type="button" class="popup__close popup__close_type_add"></button>
     </div>
   </section>
-  <section class="overlay popup-preview" aria-label="#">
-    <div class="popup__container popup__container-image">
-      <img src="#" alt="картинка" class="popup__image">
-      <h2 class="popup__caption"></h2>
-      <button type="button" class="popup__close popup__close-image"></button>
-    </div>
-
+  <section class="overlay overlay_type_preview" aria-label="#">
+    <div class="overlay__container overlay__container_type_image popup__container">
+      <img src="#" alt="картинка" class="overlay__image popup__image">
+      <h2 class="overlay__caption popup__caption"></h2>
+      <button type="button" class="overlay__close overlay__close_type_image popup__close "></button>
+</div>
   </section>
   <template class="card-template">
     <li class="card">

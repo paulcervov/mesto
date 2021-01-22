@@ -2,9 +2,9 @@
 const overlay = document.querySelector('.overlay');
 
 //1 попап имя ученого edit
-const popupEdit = document.querySelector('.popup-edit');
-const formElementEdit = popupEdit.querySelector('.popup__container-edit');
-const closeButtonEdit = popupEdit.querySelector('.popup__close-edit');
+const popupEdit = document.querySelector('.overlay_type_edit');
+const formElementEdit = popupEdit.querySelector('.popup__container_type_edit');
+const closeButtonEdit = popupEdit.querySelector('.popup__close_type_edit');
 const nameInput = formElementEdit.querySelector('[name="popup-name"]');
 const jobInput = formElementEdit.querySelector('[name="popup-job"]');
 const openButtonEdit = document.querySelector('.profile__popup-button');
@@ -13,9 +13,9 @@ const descriptionName = document.querySelector('.profile__description');
 
 
 //2 попап добавление карточки add
-const popupAdd = document.querySelector('.popup-add');
-const formElementAdd = popupAdd.querySelector('.popup__container-add');
-const closeButtonAdd = popupAdd.querySelector('.popup__close-add');
+const popupAdd = document.querySelector('.overlay_type_add');
+const formElementAdd = popupAdd.querySelector('.popup__container_type_add');
+const closeButtonAdd = popupAdd.querySelector('.popup__close_type_add');
 const titleInput = formElementAdd.querySelector('[name="popup-title"]');
 const urlInput = formElementAdd.querySelector('[name="popup-url"]');
 const cardsList = document.querySelector('.cards__list');
@@ -24,10 +24,10 @@ const openButtonAdd = document.querySelector('.profile__add-button');
 
 //3 попап увеличение фото Preview
 
-const popupPreview = document.querySelector('.popup-preview');
-const popupImage = popupPreview.querySelector('.popup__image');
-const closeButtonImage = popupPreview.querySelector('.popup__close-image');
-const popupCaption = popupPreview.querySelector('.popup__caption');
+const popupPreview = document.querySelector('.overlay_type_preview');
+const popupImage = popupPreview.querySelector('.overlay__image');
+const closeButtonImage = popupPreview.querySelector('.overlay__close_type_image');
+const popupCaption = popupPreview.querySelector('.overlay__caption');
 
 let openPopupEdit = (el) => {
   nameInput.value = titleName.textContent;
