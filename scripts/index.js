@@ -43,9 +43,8 @@ popupImage.addEventListener('click', () => togglePopup(popupPreview));
 closeButtonImage.addEventListener('click', () => togglePopup(popupPreview));
 overlay.addEventListener('click', (evt) => { 
   if (evt.target === evt.currentTarget) { 
-    togglePopup(popupEdit) 
-    togglePopup(popupPreview)
-    togglePopup(popupAdd)
+   togglePopup(popupEdit)
+ 
   } 
 }) 
 
@@ -64,7 +63,7 @@ function likeCard(evt) {
 function handleSubmit(evt) {
   evt.preventDefault();
    // создание карточки 
-  togglePopup(popupAdd)
+  togglePopup(popupAdd);
    cardsList.prepend(renderElement({
     name: titleInput.value,
     link: urlInput.value,
@@ -115,13 +114,13 @@ const initialCards = [{
 
 function renderElement(element) {
   const cardElement = cardTemplate.cloneNode(true);
-  const titleElement = cardElement.querySelector('.card__title')
-  const imageElement = cardElement.querySelector('.card__image')
-  const likeElement = cardElement.querySelector('.card__like')
-  const deleteElement = cardElement.querySelector('.card__delete')
-  titleElement.textContent = element.name
-  imageElement.src = element.link
-  imageElement.alt = element.name
+  const titleElement = cardElement.querySelector('.card__title');
+  const imageElement = cardElement.querySelector('.card__image');
+  const likeElement = cardElement.querySelector('.card__like');
+  const deleteElement = cardElement.querySelector('.card__delete');
+  titleElement.textContent = element.name;
+  imageElement.src = element.link;
+  imageElement.alt = element.name;
   imageElement.addEventListener('click', togglePreviewPopup);
   likeElement.addEventListener('click', likeCard);
   deleteElement.addEventListener('click', handleDelete);
@@ -130,11 +129,11 @@ function renderElement(element) {
 
 function render () {
   initialCards.forEach((cardElement) => {
-   cardsList.append(renderElement(cardElement))
+   cardsList.append(renderElement(cardElement));
   })
  
  }
- render()
+ render();
   
 
  
