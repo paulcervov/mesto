@@ -11,7 +11,6 @@ const openButtonEdit = document.querySelector('.profile__popup-button');
 const titleName = document.querySelector('.profile__title');
 const descriptionName = document.querySelector('.profile__description');
 
-
 //2 попап добавление карточки add
 const popupAdd = document.querySelector('.overlay_type_add');
 const formElementAdd = popupAdd.querySelector('.popup__container_type_add');
@@ -23,18 +22,17 @@ const cardTemplate = document.querySelector('.card-template').content;
 const openButtonAdd = document.querySelector('.profile__add-button');
 
 //3 попап увеличение фото Preview
-
 const popupPreview = document.querySelector('.overlay_type_preview');
 const popupImage = popupPreview.querySelector('.overlay__image');
 const closeButtonImage = popupPreview.querySelector('.overlay__close_type_image');
 const popupCaption = popupPreview.querySelector('.overlay__caption');
 
-let openPopupEdit = (el) => {
+const openPopupEdit = (el) => {
   nameInput.value = titleName.textContent;
   jobInput.value = descriptionName.textContent;
   togglePopup(el);
 }
-let togglePopup = (el) => {
+const togglePopup = (el) => {
   el.classList.toggle('overlay_opened');
 }
 openButtonAdd.addEventListener('click', () => togglePopup(popupAdd));
@@ -43,11 +41,13 @@ closeButtonEdit.addEventListener('click', () => togglePopup(popupEdit));
 closeButtonAdd.addEventListener('click', () => togglePopup(popupAdd));
 popupImage.addEventListener('click', () => togglePopup(popupPreview));
 closeButtonImage.addEventListener('click', () => togglePopup(popupPreview));
-overlay.addEventListener('click', (evt) => {
-  if (evt.target === evt.currentTarget) {
-    togglePopup(el)
-  }
-})
+overlay.addEventListener('click', (evt) => { 
+  if (evt.target === evt.currentTarget) { 
+    togglePopup(popupEdit) 
+    togglePopup(popupPreview)
+    togglePopup(popupAdd)
+  } 
+}) 
 
 function handlePersonFormSubmit(evt) {
   evt.preventDefault();
@@ -56,7 +56,36 @@ function handlePersonFormSubmit(evt) {
   togglePopup(popupEdit);
 }
 
-formElementEdit.addEventListener('submit', handlePersonFormSubmit);
+function likeCard(evt) {
+  evt.target.classList.toggle('card__like_active');
+} // ставит лайк
+
+
+function handleSubmit(evt) {
+  evt.preventDefault();
+   // создание карточки 
+  togglePopup(popupAdd)
+   cardsList.prepend(renderElement({
+    name: titleInput.value,
+    link: urlInput.value,
+  }))
+  titleInput.value = '';
+  urlInput.value = '';
+}
+function handleDelete(evt) {
+  evt.target.closest('.card').remove(); //удаление карточки
+}
+
+function togglePreviewPopup(evt) {
+  popupImage.src = evt.target.src;
+  popupImage.alt = evt.target.closest('.card').querySelector('.card__title').textContent;
+  popupCaption.textContent = evt.target.closest('.card').querySelector('.card__title').textContent;
+  togglePopup(popupPreview);
+}
+
+
+formElementAdd.addEventListener('submit', handleSubmit); // сохранение новой карточки
+formElementEdit.addEventListener('submit', handlePersonFormSubmit); 
 
 const initialCards = [{
   name: 'Архыз',
@@ -84,48 +113,28 @@ const initialCards = [{
 }
 ];
 
-function render() {
-  initialCards.forEach(renderElement);
-
-} // перебирает все елементы массива
-
 function renderElement(element) {
   const cardElement = cardTemplate.cloneNode(true);
-  cardElement.querySelector('.card__title').textContent = element.name;
-  cardElement.querySelector('.card__image').src = element.link;
-  cardElement.querySelector('.card__image').addEventListener('click', togglePreviewPopup);
-  cardElement.querySelector('.card__like').addEventListener('click', likeCard);
-  cardElement.querySelector('.card__delete').addEventListener('click', handleDelete);
-  cardsList.prepend(cardElement);
+  const titleElement = cardElement.querySelector('.card__title')
+  const imageElement = cardElement.querySelector('.card__image')
+  const likeElement = cardElement.querySelector('.card__like')
+  const deleteElement = cardElement.querySelector('.card__delete')
+  titleElement.textContent = element.name
+  imageElement.src = element.link
+  imageElement.alt = element.name
+  imageElement.addEventListener('click', togglePreviewPopup);
+  likeElement.addEventListener('click', likeCard);
+  deleteElement.addEventListener('click', handleDelete);
+  return cardElement;
 }
 
+function render () {
+  initialCards.forEach((cardElement) => {
+   cardsList.append(renderElement(cardElement))
+  })
+ 
+ }
+ render()
+  
 
-
-function likeCard(evt) {
-  evt.target.classList.toggle('card__like_active');
-} // ставит лайк
-
-function handleSubmit(evt) {
-  evt.preventDefault();
-  renderElement({
-    name: titleInput.value,
-    link: urlInput.value,
-  }) // создание карточки 
-  togglePopup(popupAdd) //обнуление полей
-  titleInput.value = '';
-  urlInput.value = '';
-}
-
-function handleDelete(evt) {
-  evt.target.closest('.card').remove(); //удаление карточки
-}
-
-formElementAdd.addEventListener('submit', handleSubmit); // сохранение новой карточки
-render();
-
-
-function togglePreviewPopup(evt) {
-  popupImage.src = evt.target.src;
-  popupCaption.textContent = evt.target.closest('.card').querySelector('.card__title').textContent;
-  togglePopup(popupPreview);
-}
+ 

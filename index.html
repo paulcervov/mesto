@@ -25,49 +25,6 @@
       </section>
       <section class="cards" aria-label="#">
         <ul class="cards__list">
-          <!--<li class="card">
-            <button type="button" class="card__delete"></button>
-            <img src="./images/card-karachaevsk.jpg" alt="Карачаево-Черкессия" class="card__image" />
-            <div class="card__item">
-              <h2 class="card__title text-content">Карачаево-Черкессия</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-elbrus.jpg" alt="Гора Эльбрус" class="card__image" />
-            <div class="card__item">
-              <h2 class="card__title text-content">Гора Эльбрус</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-dombai.jpg" alt="Домбай" class="card__image" />
-            <div class="card__item">
-              <h2 class="card__title text-content">Домбай</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-elbrus.jpg" alt="Гора Эльбрус" class="card__image" />
-            <div class="card__item">
-              <h2 class="card__title text-content">Гора Эльбрус</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-dombai.jpg" alt="Домбай" class="card__image" />
-            <div class="card__item">
-              <h2 class="card__title text-content">Домбай</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>
-          <li class="card">
-            <img src="./images/card-karachaevsk.jpg" alt="Карочаево-Черкессия" class="card__image" />
-            <div class="card__item">
-              <h2 class="card__title text-content">Карачаево-Черкессия</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </li>-->
         </ul>
       </section>
     </main>
@@ -79,8 +36,8 @@
     <div class="popup">
       <form action="#" name="my-form" class="popup__container popup__container_type_edit">
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <input type="text" name="popup-name" class="popup__input">
-        <input type="text" name="popup-job" class="popup__input">
+        <input type="text" name="popup-name" required="" class="popup__input">
+        <input type="text" name="popup-job" required="" class="popup__input">
         <button type="submit" class="popup__button popup__button_type_edit">Сохранить</button>
       </form>
       <button type="button" class="popup__close popup__close_type_edit"></button>
@@ -90,8 +47,8 @@
     <div class="popup">
       <form action="#" name="my-form-add" class="popup__container popup__container_type_add">
         <h2 class="popup__heading">Новое место</h2>
-        <input type="text" name="popup-title" placeholder="Название" class="popup__input">
-        <input type="text" name="popup-url" placeholder="Ссылка на картинку" class="popup__input">
+        <input type="text" name="popup-title" required="" placeholder="Название" class="popup__input">
+        <input type="url" name="popup-url" required="" placeholder="Ссылка на картинку" class="popup__input">
         <button type="submit" class="popup__button popup__button_type_add">Создать</button>
       </form>
       <button type="button" class="popup__close popup__close_type_add"></button>
@@ -99,7 +56,7 @@
   </section>
   <section class="overlay overlay_type_preview" aria-label="#">
     <div class="overlay__container overlay__container_type_image">
-      <img src="#" alt="картинка" class="overlay__image">
+      <img src="#" alt="#" class="overlay__image">
       <h2 class="overlay__caption"></h2>
       <button type="button" class="overlay__close overlay__close_type_image"></button>
 </div>
@@ -114,6 +71,7 @@
       </div>
     </li>
   </template>
+  
   <script src="./scripts/index.js"></script>
 </body>
 
