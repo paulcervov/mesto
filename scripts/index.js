@@ -34,27 +34,38 @@ const openPopupEdit = (el) => {
 }
 const togglePopup = (el) => {
   el.classList.toggle('overlay_opened');
+  document.addEventListener('keydown', handleEscUp)
 }
 openButtonAdd.addEventListener('click', () => togglePopup(popupAdd));
 openButtonEdit.addEventListener('click', () => openPopupEdit(popupEdit));
+popupImage.addEventListener('click', () => togglePopup(popupPreview));
 closeButtonEdit.addEventListener('click', () => togglePopup(popupEdit));
 closeButtonAdd.addEventListener('click', () => togglePopup(popupAdd));
-popupImage.addEventListener('click', () => togglePopup(popupPreview));
 closeButtonImage.addEventListener('click', () => togglePopup(popupPreview));
-overlay.addEventListener('click', (evt) => { 
-  if (evt.target === evt.currentTarget) { 
-   togglePopup(popupEdit)
- 
-  } 
-}) 
 
-function handlePersonFormSubmit(evt) {
-  evt.preventDefault();
-  titleName.textContent = nameInput.value;
-  descriptionName.textContent = jobInput.value;
-  togglePopup(popupEdit);
+const closeModalWindow = (el) => {
+  document.removeEventListener('keydown', handleEscUp);   // удаляем событие keydown
+  el.classList.remove('overlay_opened');   // скрываем попап
 }
+function handleEscUp(evt) {
+  evt.preventDefault();
+  const activePopup = document.querySelector('.overlay_opened');
+  if (evt.keyCode === 27) {
+    closeModalWindow(activePopup)
+  }
+}
+popupEdit.addEventListener('click', handleClickUp);
+popupPreview.addEventListener('click', handleClickUp);
+popupAdd.addEventListener('click', handleClickUp);
 
+function handleClickUp (evt) {
+  if (evt.target.classList.contains('overlay_opened')
+    || evt.target.classList.contains('popup__close')) {
+    closeModalWindow(popupEdit);
+    closeModalWindow(popupAdd);
+    closeModalWindow(popupPreview);
+  }
+}
 function likeCard(evt) {
   evt.target.classList.toggle('card__like_active');
 } // ставит лайк
@@ -62,9 +73,9 @@ function likeCard(evt) {
 
 function handleSubmit(evt) {
   evt.preventDefault();
-   // создание карточки 
+  // создание карточки 
   togglePopup(popupAdd);
-   cardsList.prepend(renderElement({
+  cardsList.prepend(renderElement({
     name: titleInput.value,
     link: urlInput.value,
   }))
@@ -81,7 +92,12 @@ function togglePreviewPopup(evt) {
   popupCaption.textContent = evt.target.closest('.card').querySelector('.card__title').textContent;
   togglePopup(popupPreview);
 }
-
+function handlePersonFormSubmit(evt) {
+  evt.preventDefault();
+  titleName.textContent = nameInput.value;
+  descriptionName.textContent = jobInput.value;
+  togglePopup(popupEdit);
+}
 
 formElementAdd.addEventListener('submit', handleSubmit); // сохранение новой карточки
 formElementEdit.addEventListener('submit', handlePersonFormSubmit); 
@@ -127,13 +143,10 @@ function renderElement(element) {
   return cardElement;
 }
 
-function render () {
+function render() {
   initialCards.forEach((cardElement) => {
-   cardsList.append(renderElement(cardElement));
+    cardsList.append(renderElement(cardElement));
   })
- 
- }
- render();
-  
 
- 
+}
+render();
