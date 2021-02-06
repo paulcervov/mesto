@@ -1,5 +1,7 @@
 
 const overlay = document.querySelector('.overlay');
+const formElement = document.querySelector('.popup__container');
+const inputElement = formElement.querySelector('.popup__input');
 
 //1 попап имя ученого edit
 const popupEdit = document.querySelector('.overlay_type_edit');
@@ -48,7 +50,6 @@ const closeModalWindow = (el) => {
   el.classList.remove('overlay_opened');   // скрываем попап
 }
 function handleEscUp(evt) {
-  evt.preventDefault();
   const activePopup = document.querySelector('.overlay_opened');
   if (evt.keyCode === 27) {
     closeModalWindow(activePopup)
@@ -125,8 +126,7 @@ const initialCards = [{
 {
   name: 'Байкал',
   link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-}
-];
+}];
 
 function renderElement(element) {
   const cardElement = cardTemplate.cloneNode(true);
