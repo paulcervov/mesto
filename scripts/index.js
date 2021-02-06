@@ -1,8 +1,4 @@
 
-const overlay = document.querySelector('.overlay');
-const formElement = document.querySelector('.popup__container');
-const inputElement = formElement.querySelector('.popup__input');
-
 //1 попап имя ученого edit
 const popupEdit = document.querySelector('.overlay_type_edit');
 const formElementEdit = popupEdit.querySelector('.popup__container_type_edit');
@@ -28,107 +24,76 @@ const popupPreview = document.querySelector('.overlay_type_preview');
 const popupImage = popupPreview.querySelector('.overlay__image');
 const closeButtonImage = popupPreview.querySelector('.overlay__close_type_image');
 const popupCaption = popupPreview.querySelector('.overlay__caption');
+const EscCode = 27;
 
 const openPopupEdit = (el) => {
   nameInput.value = titleName.textContent;
   jobInput.value = descriptionName.textContent;
   togglePopup(el);
 }
+
 const togglePopup = (el) => {
   el.classList.toggle('overlay_opened');
-  document.addEventListener('keydown', handleEscUp)
+  document.addEventListener('keydown', handleEscUp);
 }
-openButtonAdd.addEventListener('click', () => togglePopup(popupAdd));
-openButtonEdit.addEventListener('click', () => openPopupEdit(popupEdit));
-popupImage.addEventListener('click', () => togglePopup(popupPreview));
-closeButtonEdit.addEventListener('click', () => togglePopup(popupEdit));
-closeButtonAdd.addEventListener('click', () => togglePopup(popupAdd));
-closeButtonImage.addEventListener('click', () => togglePopup(popupPreview));
 
 const closeModalWindow = (el) => {
   document.removeEventListener('keydown', handleEscUp);   // удаляем событие keydown
   el.classList.remove('overlay_opened');   // скрываем попап
 }
-function handleEscUp(evt) {
+function handleEscUp (evt) {
   const activePopup = document.querySelector('.overlay_opened');
-  if (evt.keyCode === 27) {
-    closeModalWindow(activePopup)
+  if (evt.keyCode === EscCode ) {
+    closeModalWindow(activePopup);
   }
-}
-popupEdit.addEventListener('click', handleClickUp);
-popupPreview.addEventListener('click', handleClickUp);
-popupAdd.addEventListener('click', handleClickUp);
+} //закрытие на esc
 
-function handleClickUp(evt) {
+function handleClickUp (evt) {
+  const activePopup = document.querySelector('.overlay_opened');
   if (evt.target.classList.contains('overlay_opened')
-    || evt.target.classList.contains('popup__close')) {
-    closeModalWindow(popupEdit);
-    closeModalWindow(popupAdd);
-    closeModalWindow(popupPreview);
+    || evt.target.classList.contains('popup__close')
+    ||evt.target.classList.contains('overlay__close')) {
+    closeModalWindow(activePopup);
   }
-}
-function likeCard(evt) {
+} // закрытие на клик 
+
+function likeCard (evt) {
   evt.target.classList.toggle('card__like_active');
 } // ставит лайк
 
 
-function handleSubmit(evt) {
+function handleSubmitCard (evt) {
   evt.preventDefault();
-  // создание карточки 
   togglePopup(popupAdd);
   cardsList.prepend(renderElement({
     name: titleInput.value,
     link: urlInput.value,
   }))
-  titleInput.value = '';
-  urlInput.value = '';
-}
-function handleDelete(evt) {
+ 
+  formElementAdd.reset();
+  const addButton = document.querySelector('.popup__button_type_add')
+  addButton.setAttribute('disabled', true);
+  addButton.classList.add('popup__button_disabled');
+}// сохранение карточки 
+
+function handleDeleteCard (evt) {
   evt.target.closest('.card').remove(); //удаление карточки
 }
 
-function togglePreviewPopup(evt) {
+function togglePreviewPopup (evt) {
   popupImage.src = evt.target.src;
   popupImage.alt = evt.target.closest('.card').querySelector('.card__title').textContent;
   popupCaption.textContent = evt.target.closest('.card').querySelector('.card__title').textContent;
   togglePopup(popupPreview);
 }
-function handlePersonFormSubmit(evt) {
+function handlePersonFormSubmit (evt) {
   evt.preventDefault();
   titleName.textContent = nameInput.value;
   descriptionName.textContent = jobInput.value;
   togglePopup(popupEdit);
 }
 
-formElementAdd.addEventListener('submit', handleSubmit); // сохранение новой карточки
-formElementEdit.addEventListener('submit', handlePersonFormSubmit);
-
-const initialCards = [{
-  name: 'Архыз',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-},
-{
-  name: 'Челябинская область',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-},
-{
-  name: 'Иваново',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-},
-{
-  name: 'Камчатка',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-},
-{
-  name: 'Холмогорский район',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-},
-{
-  name: 'Байкал',
-  link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-}];
-
-function renderElement(element) {
+function renderElement (element) {
   const cardElement = cardTemplate.cloneNode(true);
   const titleElement = cardElement.querySelector('.card__title');
   const imageElement = cardElement.querySelector('.card__image');
@@ -139,14 +104,22 @@ function renderElement(element) {
   imageElement.alt = element.name;
   imageElement.addEventListener('click', togglePreviewPopup);
   likeElement.addEventListener('click', likeCard);
-  deleteElement.addEventListener('click', handleDelete);
+  deleteElement.addEventListener('click', handleDeleteCard);
   return cardElement;
 }
 
-function render() {
+function render () {
   initialCards.forEach((cardElement) => {
     cardsList.append(renderElement(cardElement));
   })
-
 }
+openButtonAdd.addEventListener ('click', () => togglePopup(popupAdd));
+openButtonEdit.addEventListener ('click', () => openPopupEdit(popupEdit));
+popupImage.addEventListener ('click', () => togglePopup(popupPreview));
+popupEdit.addEventListener ('mousedown', handleClickUp);
+popupPreview.addEventListener ('mousedown', handleClickUp);
+popupAdd.addEventListener ('mousedown', handleClickUp);
+formElementAdd.addEventListener ('submit', handleSubmitCard); // сохранение новой карточки
+formElementEdit.addEventListener ('submit', handlePersonFormSubmit);
+
 render();

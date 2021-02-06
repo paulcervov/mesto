@@ -35,14 +35,14 @@
   <section class="overlay overlay_type_edit">
     <div class="popup">
       <form novalidate  name="edit" class="popup__container popup__container_type_edit">
-        <fieldset class="popup__set">
+
         <h2 class="popup__heading">Редактировать профиль</h2>
         <input id="name-input" type="text" name="popup-name" minlength='2' maxlength='40' required class="popup__input">
         <span class="popup__input-error name-input-error"></span>
         <input id="job-input" type="text" name="popup-job"   minlength='2' maxlength='200' required class="popup__input">
         <span class="popup__input-error job-input-error"></span>
-        <button type="submit" class="popup__button popup__button_type_edit ">Сохранить</button>
-      </fieldset>
+        <button disabled type="submit" class="popup__button popup__button_type_edit ">Сохранить</button>
+
       </form>
       <button type="button" class="popup__close popup__close_type_edit"></button>
     </div>
@@ -50,14 +50,12 @@
   <section class="overlay overlay_type_add">
     <div class="popup">
       <form  novalidate  name="add" class="popup__container popup__container_type_add">
-        <fieldset class="popup__set">
         <h2 class="popup__heading">Новое место</h2>
         <input id="title-input" type="text" name="popup-title" required minlength='2' maxlength='30' placeholder="Название" class="popup__input">
         <span class="popup__input-error title-input-error"></span>
         <input id="url-input" type="url" name="popup-url" required placeholder="Ссылка на картинку" class="popup__input">
         <span class="popup__input-error url-input-error"></span>
-        <button type="submit" class="popup__button popup__button_type_add ">Создать</button>
-      </fieldset>
+        <button disabled type="submit" class="popup__button popup__button_disabled  popup__button_type_add ">Создать</button>
       </form>
       <button type="button" class="popup__close popup__close_type_add"></button>
     </div>
@@ -66,7 +64,7 @@
     <div class="overlay__container overlay__container_type_image">
       <img src="#" alt="#" class="overlay__image">
       <h2 class="overlay__caption"></h2>
-      <button type="button" class="overlay__close overlay__close_type_image"></button>
+      <button type="button" class="overlay__close  overlay__close_type_image"></button>
 </div>
   </section>
   <template class="card-template">
@@ -79,6 +77,7 @@
       </div>
     </li>
   </template>
+  <script src="./scripts/initial-сards.js"> </script>
   <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
