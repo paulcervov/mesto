@@ -59,7 +59,7 @@ popupEdit.addEventListener('click', handleClickUp);
 popupPreview.addEventListener('click', handleClickUp);
 popupAdd.addEventListener('click', handleClickUp);
 
-function handleClickUp (evt) {
+function handleClickUp(evt) {
   if (evt.target.classList.contains('overlay_opened')
     || evt.target.classList.contains('popup__close')) {
     closeModalWindow(popupEdit);
@@ -101,7 +101,7 @@ function handlePersonFormSubmit(evt) {
 }
 
 formElementAdd.addEventListener('submit', handleSubmit); // сохранение новой карточки
-formElementEdit.addEventListener('submit', handlePersonFormSubmit); 
+formElementEdit.addEventListener('submit', handlePersonFormSubmit);
 
 const initialCards = [{
   name: 'Архыз',
