@@ -34,10 +34,8 @@ function handleClickUp(evt) {
   const activePopup = document.querySelector('.overlay_opened');
   if (evt.target.classList.contains('overlay_opened')
     || evt.target.classList.contains('popup__close')
-    || evt.target.classList.contains('overlay__close')
-    || evt.target.classList.contains('overlay__image')) {
+    || evt.target.classList.contains('overlay__close')) {
     closeModalWindow(activePopup);
-    
   }
 } // закрытие на клик 
 
@@ -54,14 +52,14 @@ export function togglePreviewPopup(image, title) {
   popupCaption.textContent = title;
   togglePopup(popupPreview);
 }
-function addNewCard(item) {
-  const card = new Card(item, '.card-template')
-  const cardElement = card.generateCard();
-  cardsList.append(cardElement);
+function createCard(item) {
+  const card = new Card (item, '.card-template');
+  return card.generateCard();
 }
+
 function render() {
   initialCards.forEach((item) => {
-    addNewCard(item)
+    cardsList.append(createCard(item));
   })
 }
 render();
@@ -69,11 +67,10 @@ render();
 function handleSubmitCard(evt) {
   evt.preventDefault();
   togglePopup(popupAdd);
-  const card = new Card({
+  const cardElement = createCard({
     title: titleInput.value,
     image: urlInput.value
-  }, '.card-template')
-  const cardElement = card.generateCard();
+  });
   cardsList.prepend(cardElement)
   formElementAdd.reset();
   formAddValidator.disableSubmitButton()
@@ -86,7 +83,6 @@ formEditValudator.enableValidation()
 
 openButtonAdd.addEventListener('click', () => togglePopup(popupAdd));
 openButtonEdit.addEventListener('click', () => openPopupEdit(popupEdit));
-popupImage.addEventListener('click', () => togglePopup(popupPreview));
 popupEdit.addEventListener('mousedown', handleClickUp);
 popupPreview.addEventListener('mousedown', handleClickUp);
 popupAdd.addEventListener('mousedown', handleClickUp);
