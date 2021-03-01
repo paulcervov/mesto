@@ -1,4 +1,7 @@
-
+import Card  from './Card.js';
+import FormValidator  from './FormValidator.js';
+import  {initialCards } from './initialCards.js'
+import {selectors } from './FormValidator.js';
 //1 попап имя ученого edit
 const popupEdit = document.querySelector('.overlay_type_edit');
 const formElementEdit = popupEdit.querySelector('.popup__container_type_edit');
@@ -16,7 +19,6 @@ const closeButtonAdd = popupAdd.querySelector('.popup__close_type_add');
 const titleInput = formElementAdd.querySelector('[name="popup-title"]');
 const urlInput = formElementAdd.querySelector('[name="popup-url"]');
 const cardsList = document.querySelector('.cards__list');
-const cardTemplate = document.querySelector('.card-template').content;
 const openButtonAdd = document.querySelector('.profile__add-button');
 
 //3 попап увеличение фото Preview
@@ -57,35 +59,6 @@ function handleClickUp (evt) {
   }
 } // закрытие на клик 
 
-function likeCard (evt) {
-  evt.target.classList.toggle('card__like_active');
-} // ставит лайк
-
-
-function handleSubmitCard (evt) {
-  evt.preventDefault();
-  togglePopup(popupAdd);
-  cardsList.prepend(renderElement({
-    name: titleInput.value,
-    link: urlInput.value,
-  }))
- 
-  formElementAdd.reset();
-  const addButton = document.querySelector('.popup__button_type_add')
-  addButton.setAttribute('disabled', true);
-  addButton.classList.add('popup__button_disabled');
-}// сохранение карточки 
-
-function handleDeleteCard (evt) {
-  evt.target.closest('.card').remove(); //удаление карточки
-}
-
-function togglePreviewPopup (evt) {
-  popupImage.src = evt.target.src;
-  popupImage.alt = evt.target.closest('.card').querySelector('.card__title').textContent;
-  popupCaption.textContent = evt.target.closest('.card').querySelector('.card__title').textContent;
-  togglePopup(popupPreview);
-}
 function handlePersonFormSubmit (evt) {
   evt.preventDefault();
   titleName.textContent = nameInput.value;
@@ -93,26 +66,48 @@ function handlePersonFormSubmit (evt) {
   togglePopup(popupEdit);
 }
 
-function renderElement (element) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const titleElement = cardElement.querySelector('.card__title');
-  const imageElement = cardElement.querySelector('.card__image');
-  const likeElement = cardElement.querySelector('.card__like');
-  const deleteElement = cardElement.querySelector('.card__delete');
-  titleElement.textContent = element.name;
-  imageElement.src = element.link;
-  imageElement.alt = element.name;
-  imageElement.addEventListener('click', togglePreviewPopup);
-  likeElement.addEventListener('click', likeCard);
-  deleteElement.addEventListener('click', handleDeleteCard);
-  return cardElement;
+ export function togglePreviewPopup (evt) {
+popupImage.src = evt.target.src;
+popupImage.alt = evt.target.closest('.card').querySelector('.card__title').textContent;
+popupCaption.textContent = evt.target.closest('.card').querySelector('.card__title').textContent;
+togglePopup(popupPreview);
 }
 
 function render () {
-  initialCards.forEach((cardElement) => {
-    cardsList.append(renderElement(cardElement));
+  initialCards.forEach((item) => {
+    const card = new Card ( item, '.card-template')
+    const cardElement = card.generateCard ();
+    cardsList.append(cardElement);
   })
 }
+
+render();
+
+function handleSubmitCard (evt) {
+  evt.preventDefault();
+  togglePopup(popupAdd);
+
+    const card = new Card ({
+      title: titleInput.value,
+      image: urlInput.value
+    } ,'.card-template')
+
+  const cardElement = card.generateCard ();
+  cardsList.prepend(cardElement)
+  formElementAdd.reset();
+  const addButton = document.querySelector('.popup__button_type_add')
+  addButton.setAttribute('disabled', true);
+  addButton.classList.add('popup__button_disabled');
+}// сохранение карточки 
+
+//const formElement = document.querySelector('.popup__container'); 
+
+
+const formAddValidator = new FormValidator(selectors,  formElementAdd)
+formAddValidator.enableValidation()
+const formEditValudator = new FormValidator (selectors, formElementEdit) 
+formEditValudator.enableValidation()
+
 openButtonAdd.addEventListener ('click', () => togglePopup(popupAdd));
 openButtonEdit.addEventListener ('click', () => openPopupEdit(popupEdit));
 popupImage.addEventListener ('click', () => togglePopup(popupPreview));
@@ -121,5 +116,3 @@ popupPreview.addEventListener ('mousedown', handleClickUp);
 popupAdd.addEventListener ('mousedown', handleClickUp);
 formElementAdd.addEventListener ('submit', handleSubmitCard); // сохранение новой карточки
 formElementEdit.addEventListener ('submit', handlePersonFormSubmit);
-
-render();
