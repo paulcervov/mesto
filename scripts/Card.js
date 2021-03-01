@@ -33,7 +33,6 @@ export default class Card {
     titleElement.textContent = this._title;
     imageElement.src = this._image;
     imageElement.alt = this._title;
-    imageElement.addEventListener('click', togglePreviewPopup)
     return this._element;
   }
 
@@ -44,5 +43,6 @@ export default class Card {
     this._element.querySelector('.card__like').addEventListener('click', () => {
       this._likeCard()
     })
+    this._element.querySelector('.card__image').addEventListener('click', () => togglePreviewPopup(this._image, this._title))
   }
 }

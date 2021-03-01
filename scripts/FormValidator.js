@@ -47,6 +47,7 @@ export default class FormValidator {
   }
   _toggleButtonState(inputList, buttonElement, selectors) {
     if (this._hasInvalidInput(inputList, selectors)) {
+      this.disableSubmitButton();
       this._buttonElement.setAttribute('disabled', true);
       this._buttonElement.classList.add(this._inactiveButtonClass)
     } else {
@@ -55,23 +56,10 @@ export default class FormValidator {
     }
   }
   enableValidation() {
-    //  this._formList = Array.from(document.querySelectorAll(this._formSelector));
-    //  this._formList.forEach((formElement) => {
-
-    //    this._formElement.addEventListener('submit', (evt) => {
-    //     evt.preventDefault();
-    //    })
     this._setEventListeners();
-    //  });
   };
-
-
+disableSubmitButton() {
+  this._buttonElement.disabled = true;
+  this._buttonElement.classList.add('popup__button_disabled')
 }
-export const selectors = {
-  formSelector: '.popup__container',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_active',
 }
