@@ -28,10 +28,7 @@ const cardList = new Section({
     const card = new Card(item, '.card-template',
       {
         handleCardClick: () => {
-
           popupWithImage.open(item);
-          popupWithImage.setEventListeners();
-
         }
       })
     const cardElement = card.generateCard();
@@ -39,6 +36,8 @@ const cardList = new Section({
   }
 }, cardsList);
 cardList.renderItems();
+
+popupWithImage.setEventListeners();
 
 const popupEditForm = new PopupWithForm('.overlay_type_edit',
   {
@@ -53,8 +52,8 @@ const popupAddForm = new PopupWithForm('.overlay_type_add',
   {
     handleFormSubmit: () => {
       const card = createCard({
-        title: titleInput.value,
-        image: urlInput.value
+         title: titleInput.value,
+         image: urlInput.value
       });
       newCard.prependItem(card)
       formAddValidator.disableSubmitButton()
@@ -75,7 +74,6 @@ function createCard(item) {
   const card = new Card(item, '.card-template', {
     handleCardClick: () => {
       popupWithImage.open(item);
-      popupWithImage.setEventListeners();
     }
   });
   return card.generateCard();
