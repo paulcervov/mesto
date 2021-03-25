@@ -1,11 +1,10 @@
 
-import { togglePreviewPopup } from '../scripts/index.js'
-
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, {handleCardClick}) {
     this._title = data.title;
     this._image = data.image;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
 
   }
   _likeCard() {
@@ -43,6 +42,6 @@ export default class Card {
     this._element.querySelector('.card__like').addEventListener('click', () => {
       this._likeCard()
     })
-    this._element.querySelector('.card__image').addEventListener('click', () => togglePreviewPopup(this._image, this._title))
+    this._element.querySelector('.card__image').addEventListener('click', () => this._handleCardClick())
   }
 }

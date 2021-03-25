@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="pages/index.css" />
+  <!-- <link rel="stylesheet" href="pages/index.css" /> -->
   <title>Mesto</title>
 </head>
 
 <body class="root">
   <div class="page">
     <header class="header page__content">
-      <img src="./images/header-logo.svg" alt="логотип" class="header__logo" />
+      <img src= "./images/header-logo.svg" alt="логотип" class="header__logo" />
     </header>
     <main class="content">
       <section class="profile page__content">
@@ -37,14 +37,14 @@
       <form novalidate  name="edit" class="popup__container popup__container_type_edit">
 
         <h2 class="popup__heading">Редактировать профиль</h2>
-        <input id="name-input" type="text" name="popup-name" minlength='2' maxlength='40' required class="popup__input">
+        <input id="name-input" type="text" name="title" minlength='2' maxlength='40' required class="popup__input">
         <span class="popup__input-error name-input-error"></span>
-        <input id="job-input" type="text" name="popup-job"   minlength='2' maxlength='200' required class="popup__input">
+        <input id="job-input" type="text" name="description"   minlength='2' maxlength='200' required class="popup__input">
         <span class="popup__input-error job-input-error"></span>
-        <button disabled type="submit" class="popup__button popup__button_type_edit ">Сохранить</button>
+        <button  type="submit" class="popup__button popup__button_type_edit ">Сохранить</button>
 
       </form>
-      <button type="button" class="popup__close popup__close_type_edit"></button>
+      <button type="button" class=" overlay__close popup__close popup__close_type_edit"></button>
     </div>
   </section>
   <section class="overlay overlay_type_add">
@@ -55,9 +55,9 @@
         <span class="popup__input-error title-input-error"></span>
         <input id="url-input" type="url" name="popup-url" required placeholder="Ссылка на картинку" class="popup__input">
         <span class="popup__input-error url-input-error"></span>
-        <button disabled type="submit" class="popup__button popup__button_disabled  popup__button_type_add ">Создать</button>
+        <button type="submit" class="popup__button popup__button_disabled  popup__button_type_add ">Создать</button>
       </form>
-      <button type="button" class="popup__close popup__close_type_add"></button>
+      <button type="button" class=" overlay__close popup__close popup__close_type_add"></button>
     </div>
   </section>
   <section class="overlay overlay_type_preview" aria-label="#">
@@ -79,6 +79,6 @@
       </div>
     </li>
   </template>
-  <script type = "module" src="./scripts/index.js"></script>
+  <!-- <script type = "module" src="./scripts/index.js"></script> -->
 </body>
 </html>
