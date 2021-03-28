@@ -54,7 +54,7 @@ const popupAddForm = new PopupWithForm('.overlay_type_add',
       const card = createCard({
         title: caption,
         image: url
-     });
+     });//изображения грузятся только с локального компьютера/
       newCard.prependItem(card)
       formAddValidator.disableSubmitButton()
     }
