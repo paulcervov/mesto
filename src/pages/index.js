@@ -50,11 +50,11 @@ popupEditForm.setEventListeners();
 
 const popupAddForm = new PopupWithForm('.overlay_type_add',
   {
-    handleFormSubmit: () => {
+    handleFormSubmit: ({caption, url}) => { 
       const card = createCard({
-         title: titleInput.value,
-         image: urlInput.value
-      });
+        title: caption,
+        image: url
+     });
       newCard.prependItem(card)
       formAddValidator.disableSubmitButton()
     }

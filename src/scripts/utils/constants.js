@@ -51,8 +51,8 @@ const descriptionName = '.profile__description';
 //2 попап добавление карточки add
 const popupAdd = document.querySelector('.overlay_type_add');
 const formElementAdd = document.querySelector('.popup__container_type_add');
-const titleInput = formElementAdd.querySelector('[name="popup-title"]');
-const urlInput = formElementAdd.querySelector('[name="popup-url"]');
+const titleInput = formElementAdd.querySelector('[name="caption"]');
+const urlInput = formElementAdd.querySelector('[name="url"]');
 const cardsList = '.cards__list';
 const openButtonAdd = document.querySelector('.profile__add-button');
 
