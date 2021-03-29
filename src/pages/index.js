@@ -40,7 +40,7 @@ const popupAddForm = new PopupWithForm('.overlay_type_add',
         title: caption,
         image: url
      });//изображения грузятся только с локального компьютера/
-      newCard.prependItem(card)
+     cardList.prependItem(card)
       formAddValidator.disableSubmitButton()
     }
   })
@@ -67,7 +67,7 @@ function createCard(item) {
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    cardList.prependItem(createCard(item))
+    cardList.addItem(createCard(item))
   }
 }, cardsList)
   
