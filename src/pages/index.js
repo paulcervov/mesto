@@ -6,7 +6,7 @@ import UserInfo from '../scripts/components/UserInfo.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import {
   formElementEdit, openButtonEdit, formElementAdd, cardsList,
-  openButtonAdd, initialCards, selectors, urlInput, titleInput
+  openButtonAdd, initialCards, selectors
 } from '../scripts/utils/constants.js';
 import './index.css';
 import '../index.html';
@@ -21,21 +21,6 @@ const formEditValudator = new FormValidator(selectors, formElementEdit)
 formEditValudator.enableValidation()
 
 const userInfo = new UserInfo('.profile__title', '.profile__description')
-
-const cardList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, '.card-template',
-      {
-        handleCardClick: () => {
-          popupWithImage.open(item);
-        }
-      })
-    const cardElement = card.generateCard();
-    cardList.addItem(cardElement);
-  }
-}, cardsList);
-cardList.renderItems();
 
 popupWithImage.setEventListeners();
 
@@ -79,9 +64,11 @@ function createCard(item) {
   return card.generateCard();
 }
 
-const newCard = new Section({
+const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    newCard.prependItem(createCard(item))
+    cardList.prependItem(createCard(item))
   }
 }, cardsList)
+  
+cardList.renderItems()
