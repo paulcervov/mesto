@@ -30,6 +30,7 @@ import '../index.html';
 // .then((result) => {
 //   console.log(result)
 // })
+
 const popupWithImage = new PopupWithImage('.overlay_type_preview');
 
 const formAddValidator = new FormValidator(selectors, formElementAdd)
@@ -51,6 +52,12 @@ const popupEditForm = new PopupWithForm('.overlay_type_edit',
 
 popupEditForm.setEventListeners();
 
+// const popupAvatarForm = new PopupWithForm ('.overlay_avatar',
+// {
+//   handleFormSubmit: ({avatar}) => {
+
+//   }
+// })
 const popupAddForm = new PopupWithForm('.overlay_type_add',
   {
     handleFormSubmit: ({caption, url}) => { 
