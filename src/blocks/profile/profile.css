@@ -3,6 +3,7 @@
   padding: 38.25px 19px 36px 19px;
   display: grid;
   align-items: center;
+  position: relative;
   
 }
 @media (min-width: 768px) {

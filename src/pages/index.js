@@ -11,7 +11,25 @@ import {
 import './index.css';
 import '../index.html';
 
+// fetch('https://mesto.nomoreparties.co/v1/cohort-21/cards', {
+//   headers: {
+//     autorization: '8bc2b522-b2e5-4475-a3df-8cf1760d3928'
+//   }
+// })
+// .then(res => res.json())
+// .then((result) => {
+//   console.log(result)
+// })
 
+// fetch('https://mesto.nomoreparties.co/v1/cohor-21/users/me', {
+//   headers: {
+//     autorization: '8bc2b522-b2e5-4475-a3df-8cf1760d3928'
+//   }
+// })
+// .then(res => res.json())
+// .then((result) => {
+//   console.log(result)
+// })
 const popupWithImage = new PopupWithImage('.overlay_type_preview');
 
 const formAddValidator = new FormValidator(selectors, formElementAdd)
@@ -49,6 +67,7 @@ popupAddForm.setEventListeners()
 
 openButtonAdd.addEventListener('click', () => {
   popupAddForm.open();
+  formAddValidator.disableSubmitButton()
 })
 openButtonEdit.addEventListener('click', () => {
   popupEditForm.open(userInfo.getUserInfo());
