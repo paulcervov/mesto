@@ -24,6 +24,7 @@ import {
 const api = new Api(options)
 
 api.getCards()
+api.getInfo()
 
 const popupWithImage = new PopupWithImage('.overlay_type_preview'); 
  

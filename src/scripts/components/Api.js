@@ -32,5 +32,17 @@ export default class Api {
             })
             .catch(err => Promise.reject(err))
     }
-     
+    getInfo() {
+        return fetch(`${this._url}/users/me`, {
+            headers: this._headers,
+        })
+            .then(res => {
+                if (res.ok) {
+                    return res.json();
+                }
+                return Promise.reject(new Error(`Произошла ошибка со статус-кодом ${res.status}`))
+            })
+            .catch(err => Promise.reject(err))
+    }
+ 
 }
