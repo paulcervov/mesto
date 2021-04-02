@@ -5,7 +5,7 @@ export default class Card {
     this._image = data.image;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
-
+    //this._api = api;
   }
   _likeCard() {
     this._element.querySelector('.card__like').classList.toggle('card__like_active');

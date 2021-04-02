@@ -3,6 +3,7 @@ export default class Section {
         this._initialCards = items;
         this._container = document.querySelector(containerSelector);
         this._renderer = renderer;
+
     }
     prependItem (element){
         this._container.prepend(element)  
