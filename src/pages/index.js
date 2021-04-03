@@ -12,6 +12,7 @@ import {
   openButtonAdd, selectors
 } from '../scripts/utils/constants.js';
 
+// api
  const options = {
    url: 'https://mesto.nomoreparties.co/v1/cohort-21',
    headers: {
@@ -19,50 +20,52 @@ import {
      'Content-Type': 'application/json',
    }
  }
-
 const api = new Api(options)
 
-api.getCards().then(resp => {
+//user info
+const userInfo = new UserInfo('.profile__title', '.profile__description')
 
+// cards showing
+api.getCards().then(resp => {
     const cards =  resp.map(card => {
         return {
             title: card.name,
             image: card.link,
         }
     })
-
     const cardList = new Section({
         items: cards,
         renderer: (item) => {
             cardList.addItem(createCard(item))
         }
     }, cardsList)
-
     cardList.renderItems()
 })
 
-api.getInfo()
+// user info update
+api.getInfo().then(({name, about}) => {
+    userInfo.setUserInfo({title: name, description: about})
+})
+
+// edit form
+const popupEditForm = new PopupWithForm('.overlay_type_edit',
+    {
+        handleFormSubmit: ({ title, description }) => {
+            userInfo.setUserInfo({ title, description });
+        }
+    });
+popupEditForm.setEventListeners();
+
 
 const popupWithImage = new PopupWithImage('.overlay_type_preview');
+popupWithImage.setEventListeners();
 
 const formAddValidator = new FormValidator(selectors, formElementAdd)
 formAddValidator.enableValidation()
-
 const formEditValudator = new FormValidator(selectors, formElementEdit)
 formEditValudator.enableValidation()
 
-const userInfo = new UserInfo('.profile__title', '.profile__description')
 
-popupWithImage.setEventListeners();
-
-const popupEditForm = new PopupWithForm('.overlay_type_edit',
-  {
-    handleFormSubmit: ({ title, description }) => {
-      userInfo.setUserInfo({ title, description });
-    }
-  });
-
-popupEditForm.setEventListeners();
 
 const popupAddForm = new PopupWithForm('.overlay_type_add',
   {
