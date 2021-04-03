@@ -12,7 +12,6 @@ import {
   openButtonAdd, selectors
 } from '../scripts/utils/constants.js';
 
-// api
  const options = {
    url: 'https://mesto.nomoreparties.co/v1/cohort-21',
    headers: {
@@ -21,26 +20,39 @@ import {
    }
  }
 const api = new Api(options)
-
-//user info
 const userInfo = new UserInfo('.profile__title', '.profile__description')
 
-// cards showing
-api.getCards().then(resp => {
-    const cards =  resp.map(card => {
-        return {
-            title: card.name,
-            image: card.link,
+//  список карточек
+const cardList = new Section({
+    renderer: (item) => {
+        cardList.addItem(createCard(item))
+    }
+}, cardsList, api)
+
+// создание карточки карточки
+function createCard(item) {
+    const card = new Card(item, '.card-template', {
+        handleCardClick: () => {
+            popupWithImage.open(item);
+        }
+    });
+    return card.generateCard();
+}
+
+// добавление карточки
+const popupAddForm = new PopupWithForm('.overlay_type_add',
+    {
+        handleFormSubmit: ({caption, url}) => {
+            const card = createCard({
+                title: caption,
+                image: url
+            });
+            cardList.prependItem(card)
+            formAddValidator.disableSubmitButton()
         }
     })
-    const cardList = new Section({
-        items: cards,
-        renderer: (item) => {
-            cardList.addItem(createCard(item))
-        }
-    }, cardsList)
-    cardList.renderItems()
-})
+popupAddForm.setEventListeners()
+
 
 // user info update
 api.getInfo().then(({name, about}) => {
@@ -56,45 +68,25 @@ const popupEditForm = new PopupWithForm('.overlay_type_edit',
     });
 popupEditForm.setEventListeners();
 
-
+// попап аватарки
 const popupWithImage = new PopupWithImage('.overlay_type_preview');
 popupWithImage.setEventListeners();
 
+// валидация форм
 const formAddValidator = new FormValidator(selectors, formElementAdd)
 formAddValidator.enableValidation()
 const formEditValudator = new FormValidator(selectors, formElementEdit)
 formEditValudator.enableValidation()
 
-
-
-const popupAddForm = new PopupWithForm('.overlay_type_add',
-  {
-    handleFormSubmit: ({caption, url}) => {
-      const card = createCard({
-        title: caption,
-        image: url
-     });
-     cardList.prependItem(card)
-      formAddValidator.disableSubmitButton()
-    }
-  })
-
-popupAddForm.setEventListeners()
-
+// обработчик кнопки добавления карточки
 openButtonAdd.addEventListener('click', () => {
   popupAddForm.open();
 formAddValidator.disableSubmitButton()
 })
+
+// обработчик кнопки редактирования пользователя
 openButtonEdit.addEventListener('click', () => {
   popupEditForm.open(userInfo.getUserInfo());
-
 })
 
-function createCard(item) {
-  const card = new Card(item, '.card-template', {
-    handleCardClick: () => {
-      popupWithImage.open(item);
-    }
-  });
-  return card.generateCard();
-}
+
